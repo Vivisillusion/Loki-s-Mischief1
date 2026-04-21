@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sif's Cookbook — A Hearth-Lit Recipe Keeper</title>
+<meta name="description" content="Sif's Cookbook — a cozy place to gather your recipes, with photos, ingredients, and steps. Saved locally in your browser." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="assets/loki-app-icon-180.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="assets/loki-app-icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="assets/loki-app-icon-512.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Loki" />
+<meta name="theme-color" content="#1f3b2c" />
+</head>
+<body class="page-cookbook">
+  <div class="sparkle-layer" id="sparkleLayer"></div>
+
+  <div class="container">
+
+    <a href="index.html" class="back-link">← Back to Asgard</a>
+
+    <header class="app-header">
+      <h1>✦ Sif's Cookbook ✦</h1>
+      <div class="subtitle">the golden-haired lady's keep of hearth-warm recipes and harvest magic</div>
+      <div class="divider-rune">
+        <div class="line"></div>
+        <span class="rune">ᚦ</span><span class="rune">✦</span><span class="rune">ᛚ</span><span class="rune">✦</span><span class="rune">ᚱ</span>
+        <div class="line"></div>
+      </div>
+    </header>
+
+    <div class="kitchen-corner">
+      <img src="sif-loki-kitchen.png" alt="Chibi-style illustration of Sif and Loki cooking together" width="420" height="420" />
+    </div>
+
+    <section class="frame">
+      <div class="panel-title">
+        <div class="panel-icon">🍲</div>
+        <h2>The Recipe Book</h2>
+      </div>
+      <div class="panel-sub">Each card a little spell — ingredients, steps, and a picture of the finished dish.</div>
+
+      <div class="toolbar">
+        <input id="searchInput" type="search" placeholder="Search recipes, ingredients, or steps…" />
+        <button id="addRecipeBtn" class="btn btn-gold" type="button">✦ New Recipe</button>
+      </div>
+
+      <div id="recipeGrid" class="recipe-grid"></div>
+    </section>
+
+  </div>
+
+  <!-- ============ EDIT MODAL ============ -->
+  <div id="editModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+    <form id="editForm" class="modal" novalidate>
+      <button type="button" id="editCloseX" class="close-x" aria-label="Close">✕</button>
+      <h3 id="editTitle">New Recipe</h3>
+
+      <div class="field">
+        <label>Picture of the dish</label>
+        <div id="imgUploader" class="img-uploader" role="button" tabindex="0" aria-label="Upload an image">
+          <img id="imgPreview" alt="" style="display:none" />
+          <div class="upload-hint">
+            <div class="big">🖼️</div>
+            Click to upload a photo
+          </div>
+          <button type="button" id="removeImgBtn" class="remove-img" aria-label="Remove image">✕</button>
+          <input id="imgFile" type="file" accept="image/*" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="nameInput">Name of the dish</label>
+        <input id="nameInput" type="text" required placeholder="e.g. Hearth-bread with honey butter" />
+      </div>
+
+      <div class="field">
+        <label for="ingredientsInput">Ingredients</label>
+        <textarea id="ingredientsInput" placeholder="One per line is lovely, but any format works…"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="stepsInput">How to make it</label>
+        <textarea id="stepsInput" placeholder="The steps, little notes, the secret twist…"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="cancelBtn" class="btn btn-ghost">Cancel</button>
+        <button type="submit" id="saveBtn" class="btn btn-gold">Save Recipe</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ============ VIEW MODAL ============ -->
+  <div id="viewModal" class="modal-backdrop view-modal" role="dialog" aria-modal="true" aria-labelledby="viewTitle">
+    <div class="modal">
+      <button type="button" id="viewCloseX" class="close-x" aria-label="Close">✕</button>
+      <h3 id="viewTitle">Recipe</h3>
+      <div id="viewImg" class="view-img">✦</div>
+      <div class="view-section">
+        <h4>Ingredients</h4>
+        <p id="viewIngredients"></p>
+      </div>
+      <div class="view-section">
+        <h4>How to make it</h4>
+        <p id="viewSteps"></p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="viewCloseBtn" class="btn btn-ghost">Close</button>
+        <button type="button" id="viewEditBtn" class="btn">✦ Edit</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="site.js"></script>
+  <div id="pageBackupHost" style="position:fixed; bottom:14px; left:14px; z-index:60;"></div>
+</body>
+</html>

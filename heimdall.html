@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Heimdall's Observatory — Watcher of the Care Realm</title>
+<meta name="description" content="Heimdall watches everything. Ten quiet charts of your daily Self-Care across the month — no points, no praise. Only sight." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="site.css" />
+<script src="site.js" defer></script>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="assets/loki-app-icon-180.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="assets/loki-app-icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="assets/loki-app-icon-512.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Loki" />
+<meta name="theme-color" content="#1f3b2c" />
+</head>
+<body class="page-heimdall">
+<main class="wrap" role="main">
+  <a class="back" href="index.html">← back to Loki's hall</a>
+  <h1>🌌 Heimdall's Observatory 🌌</h1>
+  <p class="sub">"I see all roads, mortal. Even the small ones — the glass of water, the deep breath, the tidy corner. Especially those."</p>
+
+  <section class="frame" aria-labelledby="obsHeading">
+    <h2 id="obsHeading" class="visually-hidden">Monthly self-care charts</h2>
+
+    <div class="controls" aria-label="Choose month">
+      <button class="arrow" id="prevBtn" type="button" aria-label="Previous month">‹</button>
+      <span class="month-label" id="monthLabel">—</span>
+      <button class="arrow" id="nextBtn" type="button" aria-label="Next month">›</button>
+    </div>
+
+    <div class="summary" aria-live="polite">
+      <div><span class="num" id="sumDays">0</span>days observed</div>
+      <div><span class="num" id="sumChecks">0</span>tasks tended</div>
+      <div><span class="num" id="sumAvg">0%</span>average</div>
+      <div><span class="num" id="sumWorst">—</span>most struggled</div>
+    </div>
+
+    <div class="speech" id="heimSpeech">
+      <span class="nm">Heimdall ✦ Watcher of the Bifröst</span>
+      <span id="heimText">"Begin the month, and I shall begin to see."</span>
+    </div>
+
+    <div class="charts-grid" id="chartsGrid"></div>
+    <div class="empty" id="emptyState" hidden>No care has been recorded yet, mortal. Return to the hall, tend a task or two — I shall be watching.</div>
+  </section>
+
+  <p class="footer-note">Heimdall awards no points. He only keeps the ledger. Snapshots are taken whenever you tick a Self-Care task. Past months persist; the visible window is the calendar month above.</p>
+</main>
+
+
+  <div id="pageBackupHost" style="position:fixed; bottom:14px; left:14px; z-index:60;"></div>
+</body>
+</html>

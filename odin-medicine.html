@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Odin's Apothecary — Medicine Tracker</title>
+<meta name="description" content="Odin's Apothecary — track your daily medicine. Add, edit, or remove your medicines; check each one off as you take it. Names are remembered. Daily check-offs reset at midnight." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="site.css" />
+<script src="site.js" defer></script>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="assets/loki-app-icon-180.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="assets/loki-app-icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="assets/loki-app-icon-512.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Loki" />
+<meta name="theme-color" content="#1f3b2c" />
+</head>
+<body class="page-medicine">
+  <main class="wrap" role="main">
+    <a class="back" href="index.html" aria-label="Return to Loki's hall">← back to Loki's hall</a>
+    <h1>👁 Odin's Apothecary 👁</h1>
+    <p class="sub">"Healing is a craft of memory. Name your remedies, and take them — each one, every day."</p>
+
+    <section class="frame" aria-labelledby="statsHeading">
+      <h2 id="statsHeading" class="visually-hidden">Today's progress</h2>
+      <div class="stats" aria-live="polite">
+        <div><div class="num" id="takenCount">0</div>taken</div>
+        <div><div class="num" id="totalCount">0</div>total</div>
+        <div><div class="num" id="leftCount">0</div>remaining</div>
+      </div>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+        <div id="bar"></div>
+      </div>
+
+      <ul class="med-list" id="medList" aria-label="Your medicines"></ul>
+
+      <form class="add-row" id="addForm" autocomplete="off">
+        <label for="newMed" class="visually-hidden">Add a new medicine</label>
+        <input type="text" id="newMed" placeholder="✦ Add a medicine (e.g., Vitamin D)" maxlength="60" required />
+        <button class="btn" type="submit">+ Add</button>
+      </form>
+
+      <div class="speech" id="odinSpeech" aria-live="polite">
+        <span class="nm">Odin ✦ All-Father</span>
+        <span id="odinText">"Begin by naming your remedies. I shall remember them — even when you cannot."</span>
+      </div>
+
+      <div class="actions">
+        <button class="btn ghost" id="uncheckAllBtn" type="button">↶ Uncheck all (today)</button>
+      </div>
+
+      <div class="victory" id="victory" hidden>
+        <h2>👁 REMEMBRANCE HONORED 👁</h2>
+        <p>"Every remedy taken. Every name remembered. This is wisdom in its quietest form."<br><br>
+          <span class="ember">Return to the hall. Loki is being unusually polite about it.</span>
+        </p>
+        <div class="actions"><a class="btn" href="index.html">Return to Loki ✦</a></div>
+      </div>
+    </section>
+
+    <p class="footer-note">Names are remembered forever. Check-offs reset at midnight. Reward is earned only when every medicine is checked.</p>
+  </main>
+
+  
+  <div id="pageBackupHost" style="position:fixed; bottom:14px; left:14px; z-index:60;"></div>
+</body>
+</html>

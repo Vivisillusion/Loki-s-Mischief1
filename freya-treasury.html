@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Freya's Treasury — A Goddess's Ledger</title>
+<meta name="description" content="Freya's Treasury — track your gold: income, spending, budgets, and savings goals." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<script src="site.js" defer></script>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="assets/loki-app-icon-180.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="assets/loki-app-icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="assets/loki-app-icon-512.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Loki" />
+<meta name="theme-color" content="#1f3b2c" />
+</head>
+<body class="page-treasury">
+
+  <div class="lib-container">
+    <div class="lib-header">
+      <a class="lib-back" href="index.html">✦ Back to Asgard</a>
+      <h1 class="lib-title">Freya's Treasury</h1>
+      <span style="min-width:140px"></span>
+    </div>
+    <div class="lib-sub">"Every coin counted, every wish weighed in gold."</div>
+
+    <!-- Summary -->
+    <section class="tr-summary">
+      <div class="tr-stat">
+        <div class="tr-stat-label">Treasury balance</div>
+        <div class="tr-stat-value" id="trBalance">0 ✦</div>
+      </div>
+      <div class="tr-stat">
+        <div class="tr-stat-label">Earned this month</div>
+        <div class="tr-stat-value tr-pos" id="trIncomeMonth">0 ✦</div>
+      </div>
+      <div class="tr-stat">
+        <div class="tr-stat-label">Spent this month</div>
+        <div class="tr-stat-value tr-neg" id="trSpendMonth">0 ✦</div>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <nav class="tr-tabs">
+      <button class="tr-tab active" data-tab="ledger">📜 Ledger</button>
+      <button class="tr-tab" data-tab="budgets">⚖️ Budgets</button>
+      <button class="tr-tab" data-tab="goals">✦ Savings Goals</button>
+    </nav>
+
+    <!-- LEDGER -->
+    <section class="tr-panel" data-panel="ledger">
+      <div class="tr-toolbar">
+        <button class="lib-btn" id="trAddIncomeBtn">＋ Add gold (income)</button>
+        <button class="lib-btn ghost" id="trAddExpenseBtn">－ Spend gold (expense)</button>
+      </div>
+      <div class="tr-table-wrap">
+        <table class="tr-table" id="trLedgerTable">
+          <thead>
+            <tr><th>Date</th><th>Type</th><th>Category</th><th>Note</th><th class="tr-num">Amount</th><th></th></tr>
+          </thead>
+          <tbody id="trLedgerBody"></tbody>
+        </table>
+        <div class="tr-empty" id="trLedgerEmpty" style="display:none;">No entries yet — the chest is quiet ✦</div>
+      </div>
+    </section>
+
+    <!-- BUDGETS -->
+    <section class="tr-panel" data-panel="budgets" hidden>
+      <div class="tr-toolbar">
+        <button class="lib-btn" id="trAddBudgetBtn">＋ New budget</button>
+        <span class="tr-hint">Set a monthly limit per category. Spending in the ledger fills the bar.</span>
+      </div>
+      <div class="tr-budget-grid" id="trBudgetGrid"></div>
+      <div class="tr-empty" id="trBudgetEmpty" style="display:none;">No budgets set yet ✦</div>
+    </section>
+
+    <!-- GOALS -->
+    <section class="tr-panel" data-panel="goals" hidden>
+      <div class="tr-toolbar">
+        <button class="lib-btn" id="trAddGoalBtn">＋ New savings goal</button>
+        <span class="tr-hint">Tuck gold aside towards a wish — a new cloak, a journey, a quiet feast.</span>
+      </div>
+      <div class="tr-goal-grid" id="trGoalGrid"></div>
+      <div class="tr-empty" id="trGoalEmpty" style="display:none;">No savings goals yet ✦</div>
+    </section>
+  </div>
+
+  <div class="loki-corner" aria-hidden="true">
+    <img src="assets/freya-loki-treasure.png" alt="Freya and Loki counting treasure" />
+  </div>
+
+  <!-- ENTRY MODAL (income/expense) -->
+  <div class="lib-modal" id="trEntryModal" role="dialog" aria-modal="true">
+    <div class="lib-modal-card tr-modal-narrow">
+      <div class="lib-modal-body" style="grid-column: 1 / -1;">
+        <h2 id="trEntryHeading">Add entry</h2>
+        <form class="lib-form" id="trEntryForm" onsubmit="return false;">
+          <label for="trEntryDate">Date</label>
+          <input id="trEntryDate" type="date" />
+
+          <label for="trEntryCategory">Category</label>
+          <input id="trEntryCategory" type="text" placeholder="e.g. Feast, Apothecary, Wages" maxlength="60" />
+
+          <label for="trEntryNote">Note (optional)</label>
+          <input id="trEntryNote" type="text" placeholder="A small description…" maxlength="200" />
+
+          <label for="trEntryAmount">Amount (gold ✦)</label>
+          <input id="trEntryAmount" type="number" min="0" step="0.01" placeholder="0" />
+
+          <div class="modal-actions">
+            <button type="button" class="lib-btn danger" id="trEntryDelete" style="display:none;">Remove</button>
+            <button type="button" class="lib-btn ghost" id="trEntryCancel">Cancel</button>
+            <button type="button" class="lib-btn" id="trEntrySave">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUDGET MODAL -->
+  <div class="lib-modal" id="trBudgetModal" role="dialog" aria-modal="true">
+    <div class="lib-modal-card tr-modal-narrow">
+      <div class="lib-modal-body" style="grid-column: 1 / -1;">
+        <h2 id="trBudgetHeading">New budget</h2>
+        <form class="lib-form" id="trBudgetForm" onsubmit="return false;">
+          <label for="trBudgetCategory">Category</label>
+          <input id="trBudgetCategory" type="text" placeholder="e.g. Feast, Apothecary" maxlength="60" />
+
+          <label for="trBudgetLimit">Monthly limit (gold ✦)</label>
+          <input id="trBudgetLimit" type="number" min="0" step="0.01" placeholder="0" />
+
+          <div class="modal-actions">
+            <button type="button" class="lib-btn danger" id="trBudgetDelete" style="display:none;">Remove</button>
+            <button type="button" class="lib-btn ghost" id="trBudgetCancel">Cancel</button>
+            <button type="button" class="lib-btn" id="trBudgetSave">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOAL MODAL -->
+  <div class="lib-modal" id="trGoalModal" role="dialog" aria-modal="true">
+    <div class="lib-modal-card tr-modal-narrow">
+      <div class="lib-modal-body" style="grid-column: 1 / -1;">
+        <h2 id="trGoalHeading">New savings goal</h2>
+        <form class="lib-form" id="trGoalForm" onsubmit="return false;">
+          <label for="trGoalName">Name of the wish</label>
+          <input id="trGoalName" type="text" placeholder="e.g. A new cloak" maxlength="120" />
+
+          <label for="trGoalTarget">Goal amount (gold ✦)</label>
+          <input id="trGoalTarget" type="number" min="0" step="0.01" placeholder="0" />
+
+          <label for="trGoalSaved">Already saved (gold ✦)</label>
+          <input id="trGoalSaved" type="number" min="0" step="0.01" placeholder="0" />
+
+          <div class="modal-actions">
+            <button type="button" class="lib-btn danger" id="trGoalDelete" style="display:none;">Remove</button>
+            <button type="button" class="lib-btn ghost" id="trGoalCancel">Cancel</button>
+            <button type="button" class="lib-btn" id="trGoalSave">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="pageBackupHost" style="position:fixed; bottom:14px; left:14px; z-index:60;"></div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Frigga's Spellbook — A Queen's Grimoire</title>
+<meta name="description" content="Frigga's Spellbook — a quiet grimoire where you keep the spells you've gathered." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<script src="site.js" defer></script>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="assets/loki-app-icon-180.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="assets/loki-app-icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="assets/loki-app-icon-512.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Loki" />
+<meta name="theme-color" content="#1f3b2c" />
+</head>
+<body class="page-spellbook">
+
+  <div class="lib-container">
+    <div class="lib-header">
+      <a class="lib-back" href="index.html">✦ Back to Asgard</a>
+      <h1 class="lib-title">Frigga's Spellbook</h1>
+      <span style="min-width:140px"></span>
+    </div>
+    <div class="lib-sub">"Every spell a small wish, written down before it forgets itself."</div>
+
+    <div class="shelf">
+      <div class="toolbar">
+        <span class="lib-count" id="libCount">0 spells in the grimoire</span>
+        <button class="lib-btn ghost" id="addBtn">＋ Add a spell</button>
+      </div>
+      <div class="book-grid" id="bookGrid"></div>
+      <div class="empty-shelf" id="emptyMsg" style="display:none;">
+        The grimoire is empty. Add your first spell ✦
+      </div>
+    </div>
+  </div>
+
+  <div class="loki-corner" aria-hidden="true">
+    <img src="assets/loki-frigga-witches.png" alt="Loki and Frigga as little witches" />
+  </div>
+
+  <input type="file" id="fileInput" accept="image/*" style="display:none" />
+
+  <div class="lib-modal" id="bookModal" role="dialog" aria-modal="true">
+    <div class="lib-modal-card">
+      <div>
+        <div class="lib-modal-cover" id="modalCover"><span>No image yet</span></div>
+        <div class="change-cover">
+          <button type="button" id="changeCoverBtn">Change spell image</button>
+        </div>
+      </div>
+      <div class="lib-modal-body">
+        <h2 id="modalHeading">Spell details</h2>
+        <form class="lib-form" id="bookForm" onsubmit="return false;">
+          <label for="fTitle">Name of the spell</label>
+          <input id="fTitle" type="text" maxlength="200" placeholder="A Spell for Quiet Mornings" />
+
+          <label for="fSummary">The spell</label>
+          <textarea id="fSummary" maxlength="6000" placeholder="Write the spell here — words, ingredients, intentions..."></textarea>
+
+          <div class="modal-actions">
+            <button type="button" class="lib-btn danger" id="deleteBtn" style="display:none;">Remove</button>
+            <button type="button" class="lib-btn ghost" id="cancelBtn">Cancel</button>
+            <button type="button" class="lib-btn" id="saveBtn">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="pageBackupHost" style="position:fixed; bottom:14px; left:14px; z-index:60;"></div>
+</body>
+</html>

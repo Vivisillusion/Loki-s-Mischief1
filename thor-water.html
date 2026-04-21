@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thor's Drinking Horn — Hydration Counter</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="site.css" />
+<script src="site.js" defer></script>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="assets/loki-app-icon-180.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="assets/loki-app-icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="assets/loki-app-icon-512.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Loki" />
+<meta name="theme-color" content="#1f3b2c" />
+</head>
+<body class="page-water">
+<div class="wrap">
+  <a class="back" href="index.html">← back to Loki's hall</a>
+  <h1>⚡ Thor's Drinking Horn ⚡</h1>
+  <div class="sub">"Drink, friend! Two litres before the sun sets — that is the warrior's measure."</div>
+
+  <div class="frame">
+    <div class="stats">
+      <div><div class="num" id="cupCount">0</div>cups</div>
+      <div><div class="num" id="mlCount">0</div>ml drunk</div>
+      <div><div class="num" id="goalLeft">2000</div>ml to go</div>
+    </div>
+    <div class="progress"><div id="bar" style="width:0%"></div></div>
+    <div class="cups" id="cupGrid"></div>
+    <div class="speech" id="thorSpeech">
+      <span class="nm">Thor ✦ son of Odin</span>
+      <span id="thorText">"A horn of water? Fine — but only if you finish it. Tap a cup when you've drunk one. 250ml each, eight to victory."</span>
+    </div>
+    <div class="actions">
+      <button class="btn" id="undoBtn">↶ Spill one</button>
+      <button class="btn" id="resetBtn">Reset today</button>
+    </div>
+    <div class="victory" id="victory">
+      <h2>⚡ HYDRATION HONORED ⚡</h2>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;line-height:1.5">
+        "TWO LITRES! By the storm, you have done it!" Thor claps you on the back hard enough to bruise. "I shall tell my brother of this feat — and of his clever little mortal who keeps their word." <br><br>
+        <span style="color:var(--thor-glow)">Return to the hall. Loki has noticed.</span>
+      </div>
+      <div class="actions"><a class="btn" href="index.html" style="text-decoration:none;display:inline-block">Return to Loki ✦</a></div>
+    </div>
+  </div>
+  <div class="footer-note">Resets at midnight. Eight cups = one full Midgardian day's hydration.</div>
+</div>
+
+
+  <div id="pageBackupHost" style="position:fixed; bottom:14px; left:14px; z-index:60;"></div>
+</body>
+</html>

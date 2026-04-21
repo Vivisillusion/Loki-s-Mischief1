@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sigyn's Dungeon — Confession & Reckoning</title>
+<meta name="description" content="Sigyn's Dungeon — confess your transgressions, serve the punishment, and reclaim your mischief points. Every misdeed costs 10 ✦." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="site.css" />
+<script src="site.js" defer></script>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="assets/loki-app-icon-180.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="assets/loki-app-icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="assets/loki-app-icon-512.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Loki" />
+<meta name="theme-color" content="#1f3b2c" />
+</head>
+<body class="page-dungeon">
+<div class="sparkle-layer" id="sparkleLayer"></div>
+
+<div class="container">
+
+  <a href="index.html" class="back-link">← Back to Asgard</a>
+
+  <header class="app-header">
+    <h1>⛓ Sigyn's Dungeon ⛓</h1>
+    <div class="subtitle">the patient one's keep — where every misdeed is held, until you serve it</div>
+    <div class="divider-rune">
+      <div class="line"></div>
+      <span class="rune">ᚦ</span><span class="rune">⛓</span><span class="rune">ᛚ</span><span class="rune">⛓</span><span class="rune">ᚱ</span>
+      <div class="line"></div>
+    </div>
+  </header>
+
+  <section class="frame" id="sigynDungeonSection">
+    <span class="corner-tr"></span><span class="corner-bl"></span>
+    <div class="panel-title"><div class="panel-icon">⛓</div><h2>The Reckoning</h2></div>
+    <div class="sub">Confess your transgressions to Sigyn. Each one costs <strong>10 ✦</strong>. Serve the punishment to earn them back. She is patient — but she is keeping count.</div>
+
+    <div class="sigyn-stage">
+      <div class="sigyn-pair-card" data-tip="The trickster and the one who waits">
+        <img src="assets/sigyn-loki.png" alt="Loki, the mischievous one, beside Sigyn the patient" />
+        <div class="sigyn-pair-caption">"He misbehaves. I stay. That is the bargain."</div>
+      </div>
+    </div>
+
+    <div class="sigyn-speech" id="sigynSpeech" aria-live="polite">"Sit. Confess when you are ready. I am patient."</div>
+
+    <div class="sigyn-meta" aria-live="polite">
+      <span class="sigyn-tally">Transgressions: <strong id="sigynCount">0</strong></span>
+      <span class="sigyn-tally">Unserved: <strong id="sigynUnserved">0</strong></span>
+      <span class="sigyn-tally sigyn-debt">Held in chains: <strong id="sigynDebt">0</strong> ✦</span>
+      <span class="sigyn-tally sigyn-balance">Mischief Points: <strong id="dungeonPoints">0</strong> ✦</span>
+    </div>
+
+    <form class="sigyn-add-row" id="sigynAddForm" autocomplete="off">
+      <label for="sigynNew" class="visually-hidden">Confess a new transgression</label>
+      <input type="text" id="sigynNew" placeholder="✦ Confess a transgression (e.g., snapped at a friend)" maxlength="120" required />
+      <button class="btn" type="submit">+ Confess (−10 ✦)</button>
+    </form>
+
+    <div class="sigyn-list" id="sigynList" aria-label="Your transgressions and their punishments"></div>
+
+    <p class="sigyn-foot-note">Each confession is a vow to make it right. Edit the punishment if Sigyn's suggestion doesn't fit. Tick the box to mark it served — and reclaim your 10 ✦.</p>
+
+    <div class="sigyn-history" id="sigynHistory"></div>
+
+    <div id="pageBackupHost" style="margin-top:18px; display:flex; justify-content:center;"></div>
+  </section>
+
+  <footer>
+    ⛓ a quiet keep, woven of patience and mischief ⛓
+  </footer>
+</div>
+
+</body>
+</html>
